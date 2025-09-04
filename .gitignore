@@ -1,0 +1,9 @@
+# Virtual Environment
+venv/
+.env
+
+# Tailwind / Node
+node_modules/
+frontend/node_modules/
+frontend/static_src/
+*.lock
