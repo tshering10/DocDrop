@@ -1,13 +1,89 @@
-{% extends "files/base.html" %}
-{% block titile %}Signup{% endblock titile %}
-{% block content %}
-    <div class="">
-        <h3 class="text-red-400 text-2xl">Signup</h3>
-        <form method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Register</button>
-        </form>
-        <a href="{% url "login" %}">Already have an account?</a>
+{% extends "files/base.html" %} {% block title %}Signup{% endblock title %}
+{%block content %}
+<div class="max-w-md mx-auto bg-gray-900 p-6 rounded-lg shadow-md mt-5 ">
+  <!-- Heading -->
+  <h3 class="text-3xl text-center font-bold mb-6">Signup</h3>
+
+  <!-- Form -->
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+
+    <div>
+      <label for="id_username" class="block text-base mb-1 text-gray-300">Username</label>
+      {{ form.username }}
     </div>
+    <div>
+      <label for="id_email" class="block text-sm mb-1 text-gray-300">Email</label>
+      {{ form.email }}
+    </div>
+    <div>
+      <label for="id_password1" class="block text-sm mb-1 text-gray-300">Password</label>
+      {{ form.password1 }}
+    </div>
+    <div>
+      <label for="id_password2" class="block text-sm mb-1 text-gray-300">Confirm Password</label>
+      {{ form.password2 }}
+    </div>
+
+    <div class="flex items-center justify-between">
+      <label class="flex items-center space-x-2 ms-1.5">
+        <input
+          type="checkbox"
+          class="h-4 w-4 rounded border-gray-600 focus:ring-blue-500"
+        />
+        <span class="text-sm sm:text-base">Remember me</span>
+      </label>
+
+      <a
+        href="#"
+        class="hover:text-blue-500 hover:underline text-sm sm:text-base"
+        >Forgot Password ?</a
+      >
+    </div>
+    <!-- Submit -->
+    <button
+      type="submit"
+      class="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition"
+    >
+      Sign Up
+    </button>
+  </form>
+
+  <!-- Login Link -->
+  <p class="mt-6 text-center">
+    <a href="{% url 'login' %}" class="text-blue-400 hover:text-blue-600">
+      Already have an account? Login
+    </a>
+  </p>
+
+  <p class="text-sm text-center mt-2">OR</p>
+  <!-- Continue with Google -->
+  <div class="mt-6">
+    <button
+      type="button"
+      class="w-full flex items-center justify-center px-4 py-2 border border-gray-600 rounded-md bg-gray-800 hover:bg-gray-700 transition"
+    >
+      <!-- Google Icon (SVG) -->
+      <svg class="h-5 w-5 mr-2" viewBox="0 0 533.5 544.3">
+        <path
+          fill="#4285F4"
+          d="M533.5 278.4c0-18.4-1.5-36-4.3-53H272v100.6h146.9c-6.3 34-25.2 62.9-53.6 82.3v68h86.6c50.8-46.7 81-116 81-197.9z"
+        />
+        <path
+          fill="#34A853"
+          d="M272 544.3c72.6 0 133.6-24.1 178.1-65.5l-86.6-68c-24 16-55 25.2-91.5 25.2-70.3 0-129.9-47.5-151.1-111.2H32v69.9C76.5 484.1 167.7 544.3 272 544.3z"
+        />
+        <path
+          fill="#FBBC05"
+          d="M120.9 330.8c-8.6-25.3-8.6-52.7 0-78l-88-69.9C9.7 222 0 247.2 0 272s9.7 50 32.9 88.1l88-69.9z"
+        />
+        <path
+          fill="#EA4335"
+          d="M272 107.7c38.9 0 73.8 13.4 101.4 39.6l76-76C405.6 24.5 344.6 0 272 0 167.7 0 76.5 60.2 32 147.4l88 69.9c21.2-63.7 80.8-111.2 151.1-111.2z"
+        />
+      </svg>
+      Continue with Google
+    </button>
+  </div>
+</div>
 {% endblock content %}

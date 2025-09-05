@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'accounts',
     'tailwind',
     'frontend',
-    'django_browser_reload',
+    'widget_tweaks',
  
 ]
 
