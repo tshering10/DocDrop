@@ -1,3 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import File
+from .forms import FileUploadForm
 
-# Create your views here.
+@login_required
+def file_upload_view(request):
+    if request.method == "POST":
+        form = FileUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            file_instance = form.save(commit=False)
+            file_instance.uploader = request.user
+            file_instance.save()
+            return redirect('dashboard')
+    else:
+        form = FileUploadForm()
+    return render(request, "files/upload.html", {"form": form})
+
+#dashboard
+@login_required
+def dashboard(request):
+    files = File.objects.all().order_by('-uploaded_at')
+    return render(request, 'files/dashboard.html', {'files': files})
+
+@login_required
+def user_dashboard(request):
+    user_files = File.objects.filter(uploader=request.user)
+    return render(request, 'files/user_dashboard.html', {'user_files': user_files})
