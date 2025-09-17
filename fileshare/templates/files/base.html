@@ -9,9 +9,9 @@
     <title>{% block title %}{% endblock title %}</title>
     <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet" />
   </head>
-  <body class="bg-black text-white">
+  <body class="bg-black text-gray-300">
     <!-- Navbar -->
-    <nav class="bg-gray-900 shadow-lg sticky top-0 z-50">
+    <nav class="bg-slate-800 text-white shadow-lg sticky top-0 z-50">
       <div class="max-w-8xl mx-auto px-4">
         <div class="flex items-center justify-around h-15">
           <!-- Logo -->
@@ -32,7 +32,7 @@
               <div class="flex justify-center items-center space-x-5">
                  <!--Browse Dropdown-->
                 <div class="group relative">
-                  <button id="browse-btn" class="flex items-center justify-center border cursor-pointer p-1 px-2 rounded-lg text-base">
+                  <button id="browse-btn" class="flex items-center justify-center border border-gray-300 cursor-pointer p-1 px-2 rounded-lg text-base hover:bg-gray-600">
                     Browse
                     <svg class="ml-2 w-4 h-4" 
                       fill="none" 
@@ -48,9 +48,9 @@
                   </button>
 
                   <div id="browse-menu" class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg py-1 z-10 hidden">
-                    <a href="{% url "dashboard" %}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600">All Files</a>
+                    <a href="{% url "dashboard" %}" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 transition-colors duration-200">All Files</a>
                     <hr>
-                    <a href="{% url "my-uploads" %}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600">My Files</a>
+                    <a href="{% url "my-uploads" %}" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 transition-colors duration-200">My Files</a>
                   </div>
                 </div>
 
@@ -61,11 +61,11 @@
                   </button>
 
                     <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg py-1 hidden">
-                      <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600">Profile</a>
-                      <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600">Settings</a>
+                      <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">Profile</a>
+                      <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">Settings</a>
           
                       <hr>
-                      <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-600">Logout</a>
+                      <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-red-400 hover:text-red-500 hover:bg-gray-800">Logout</a>
                     </div>
                 </div>
               </div>
