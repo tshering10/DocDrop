@@ -198,6 +198,27 @@
 
       setupDropdown("browse-btn", "browse-menu");
       setupDropdown("profile-btn", "profile-menu");
+
+
+    //Script for dropdown file menu
+    document.addEventListener("DOMContentLoaded", () => {
+      const dropdownButtons = document.querySelectorAll(".dropdown-btn");
+
+      dropdownButtons.forEach((btn) => {
+        const menu = btn.nextElementSibling;
+
+        btn.addEventListener('click', (e) => {
+          menu.classList.toggle('hidden');
+        });
+        //close menu
+        document.addEventListener('click', (e) => {
+          if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.add('hidden');
+          }
+          
+        });
+      });
+    });
     </script>
   </body>
 </html>

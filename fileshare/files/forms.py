@@ -17,15 +17,18 @@ class FileUploadForm(forms.ModelForm):
         }
         
         
-    def clean(self):
+    def clean_file(self):
         file = self.cleaned_data.get('file')
         
-        #file size validation
+        if not file:
+            return file  # skip if no file uploaded (optional)
+
+        # File size validation (max 20 MB)
         if file.size > 20 * 1024 * 1024:
-            raise forms.ValidationError("File too large.Max size is 20 MB.")
+            raise forms.ValidationError("File too large. Max size is 20 MB.")
         
-        # file extension validation
-        ext = os.path.split(file.name)[1]
+        # File extension validation
+        ext = os.path.splitext(file.name)[1]  # correct way to get extension
         valid_extensions = ['.pdf', '.docx', '.jpeg', '.jpg', '.txt', '.png']
         
         if ext.lower() not in valid_extensions:
