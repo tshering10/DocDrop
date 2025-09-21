@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import File
 from .forms import FileUploadForm
+
 @login_required
 def file_upload_view(request):
     if request.method == "POST":
@@ -19,7 +20,12 @@ def file_upload_view(request):
 @login_required
 def dashboard(request):
     files = File.objects.all().order_by('-uploaded_at')
-    return render(request, 'files/dashboard.html', {'files': files})
+    query = request.GET.get('q')
+    
+    if query:
+        files = files.filter(file__icontains=query)
+        
+    return render(request, 'files/dashboard.html', {'files': files, 'query':query})
 
 @login_required
 def user_dashboard(request):

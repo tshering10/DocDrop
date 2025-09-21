@@ -9,7 +9,7 @@
             </div>
             <div>
                 <a href="{{ file.file.url }}" class="text-gray-400 hover:underline hover:text-gray-300">
-                    {{ file.file.name|slice:"8:" }}
+                    {{ file.title }}
                 </a>
                 <p class="text-xs text-gray-500">Uploaded {{ file.uploaded_at|date:"Y-m-d" }}</p>
             </div>
@@ -33,7 +33,7 @@
                         dark:bg-gray-700 dark:divide-gray-600 z-20">
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
                     <li>
-                        <a href="{{ file.file.url}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <a href="{{ file.file.url}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
                             Download
                         </a>
                     </li>
@@ -42,7 +42,7 @@
                         <form action="{% url "delete-file" file.id %}"
                               onsubmit="return confirm('Are you sure you want to delete this file?');">
                             {% csrf_token %}
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
                                 Delete
                             </button>
                         </form>

@@ -2,14 +2,22 @@
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
 <div>
-    <div class="flex items-center justify-between mb-4 ">
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center 
+                justify-between mb-4 space-y-4 sm:space-y-0 sm:space-x-4">
         <a href="{% url "file-upload" %}" 
-        class="text-gray-300 hover:text-white px-6 py-2 border border-gray-800 hover:bg-gray-900 rounded-lg font-semibold shadow-md transition-colors duration-200">+ Import
+        class="w-max sm:w-auto text-gray-300 hover:text-white
+                px-4 sm:px-6 py-2 border border-gray-800 hover:bg-gray-900 rounded-lg 
+                font-semibold shadow-md transition-colors duration-200
+                text-sm sm:text-base">
+                + Import
         </a>
 
-        <div class="relative">
-            <input type="text" placeholder="Search files.." 
-            class="w-full pr-10 pl-4 py-2 border border-gray-800 bg-slate-900 text-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
+        <form action="" methos='GET' class="relative w-full sm:w-64">
+            <input type="text" placeholder="Search files.." name='q' value='{{ query|default:"" }}' 
+            class="w-full pr-10 pl-4 py-2 border border-gray-800 bg-slate-900 
+                text-gray-300 rounded-full focus:outline-none focus:ring-2
+                 focus:ring-blue-500 transition-all duration-200
+                 text-sm sm:text-base">
             <svg xmlns="http://www.w3.org/2000/svg"
                 class="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" 
                 fill="none" viewBox="0 0 24 24" 
@@ -17,7 +25,7 @@
                 stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-        </div>
+        </form>
     </div>
       <h2 class="text-xl font-bold text-gray-200 mb-4">All Files</h2>
         {% include "files/_file_list.html" with files=files %}  
