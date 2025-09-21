@@ -1,0 +1,16 @@
+{% extends "files/base.html" %}
+{% block title %}{{ file.title }}Details{% endblock title %}
+{% block content %}
+<div class="max-w-md mt-10 p-6 bg-gray-800 rounded-lg shadow text-gray-200">
+    <h2 class="text-2xl font-semibold mb-4">{{ file.title }}</h2>
+    <p><strong>Uploader:</strong> {{ file.uploader.username }}</p>
+    <p><strong>Uploaded At:</strong> {{ file.uploaded_at|date:"Y-m-d H:i" }}</p>
+    <p><strong>File Name:</strong> {{ file.file.name|slice:"8:" }}</p>
+    <p><strong>File Size:</strong> {{ file.file.size|filesizeformat }}</p>
+    <p><strong>File Type:</strong> {{ file.file.name|slice:"-4:" }}</p>
+    
+    <a href="{{ file.file.url }}" class="mt-4 inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">
+        Download
+    </a>
+</div>
+{% endblock content %}

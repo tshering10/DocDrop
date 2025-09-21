@@ -23,7 +23,7 @@ def dashboard(request):
     query = request.GET.get('q')
     
     if query:
-        files = files.filter(file__icontains=query)
+        files = files.filter(title__icontains=query)
         
     return render(request, 'files/dashboard.html', {'files': files, 'query':query})
 
@@ -32,7 +32,14 @@ def user_dashboard(request):
     user_files = File.objects.filter(uploader=request.user)
     return render(request, 'files/user_dashboard.html', {'user_files': user_files})
 
+@login_required
 def delete_view(request, id):
     file = get_object_or_404(File, id=id, uploader=request.user)
     file.delete()
     return redirect('dashboard')
+
+
+@login_required
+def details_view(request, id):
+    file = get_object_or_404(File, id=id)
+    return render(request, "files/file_detail.html", {"file":file})

@@ -37,7 +37,12 @@
                             Download
                         </a>
                     </li>
-                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url "file-detail" file.id %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                            Details
+                        </a>
+                    </li>
+                    {% if user.is_authenticated and file.uploader == request.user %}
                     <li>
                         <form action="{% url "delete-file" file.id %}"
                               onsubmit="return confirm('Are you sure you want to delete this file?');">
