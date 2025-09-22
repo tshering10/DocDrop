@@ -57,11 +57,11 @@
                 <!--Profile Dropdown-->
                 <div class="group relative">
                   <button id="profile-btn" class="flex text-sm rounded-full cursor-pointer">
-                    <img src="" alt="Profile" class="w-8 h-8 border rounded-full bg-red-400">
+                    <img src="" alt="Profile" class="w-8 h-8 border rounded-full">
                   </button>
 
                     <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg py-1 hidden">
-                      <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">Profile</a>
+                      <a href="{% url "profile-view" %}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">Profile</a>
                       <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">Settings</a>
           
                       <hr>

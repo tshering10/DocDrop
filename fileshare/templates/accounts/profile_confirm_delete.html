@@ -1,0 +1,20 @@
+{% extends "files/base.html" %}
+{% block title %}Confirmation Page{% endblock title %}
+{% block content %}
+<div class="max-w-3xl mx-auto mt-8 p-6 bg-gray-800 rounded-lg shadow-lg text-gray-300 text-center">
+    <h2 class="text-2xl font-semibold mb-4 text-red-400">Delete Profile</h2>
+    <p class="mb-6">Are you sure you want to delete your account? This action cannot be undone.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" 
+                class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold">
+            Yes, Delete
+        </button>
+        <a href="{% url 'profile-view' %}" 
+           class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg text-white font-semibold ml-2">
+           Cancel
+        </a>
+    </form>
+</div>
+{% endblock content %}

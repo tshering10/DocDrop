@@ -1,0 +1,28 @@
+{% extends "files/base.html" %}
+{% block title %}My Profile{% endblock title %}
+{% block content %}
+<div class="max-w-3xl mx-auto mt-8 p-6 bg-gray-800 rounded-lg shadow-lg text-gray-300">
+    <div class="flex items-center space-x-6">
+        <img src="{{ profile.profilePicture.url }}" 
+             alt="Profile Picture" 
+             class="w-24 h-24 rounded-full border-2 border-gray-600 object-cover">
+
+        <div>
+            <h2 class="text-2xl font-semibold">{{ profile.user.username }}</h2>
+            <p>Email: {{ profile.user.email }}</p>
+            <p>Joined: {{ profile.joined_at|date:"Y-m-d" }}</p>
+        </div>
+    </div>
+
+    <div class="mt-6 flex space-x-4">
+        <a href="{% url 'profile-edit' %}" 
+           class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold">
+           Edit Profile
+        </a>
+        <a href="{% url 'profile-delete' %}" 
+           class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold">
+           Delete Profile
+        </a>
+    </div>
+</div>
+{% endblock content %}
