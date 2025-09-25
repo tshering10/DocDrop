@@ -6,21 +6,34 @@
 
     <form method="post" enctype="multipart/form-data" class="space-y-4">
         {% csrf_token %}
-        <div>
-            <label class="block mb-1">Profile Picture</label>
-            {{ form.profilePicture }}
-        </div>
 
-        <!-- If you add other editable fields, include them here -->
+        <div>
+            {% if profile_form.instance.profilePicture %}
+                <img src="{{ profile_form.instance.profilePicture.url }}" 
+                alt="Profile Picture"
+                class="w-24 h-24 rounded-full border-2 border-gray-600 object-cover">
+            {% endif %}
+            
+        </div>  
+
+        <div>
+            <p>
+                <label for="id_profilePicture">Profile picture:</label>
+                <input type="file" name="profilePicture" accept="image/*" id="id_profilePicture">
+            </p>
+        </div>
         
-        <button type="submit" 
-                class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-white font-semibold">
-            Save Changes
-        </button>
-        <a href="{% url 'profile-view' %}" 
-           class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg text-white font-semibold">
-           Cancel
-        </a>
+        <div class="flex items-center justify-start">
+            <button type="submit"
+                class="px-4 py-2 me-3 bg-green-600 hover:bg-green-700 rounded-lg text-white font-semibold">
+                Save Changes
+            </button>
+
+            <a href="{% url 'profile-view' %}" 
+                class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg text-white font-semibold">
+                Cancel
+            </a>
+        </div>
     </form>
 </div>
 {% endblock content %}

@@ -5,7 +5,6 @@ from  django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 #signup view
-@login_required
 def signup_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -18,7 +17,6 @@ def signup_view(request):
     return render(request, 'accounts/signup.html', {'form': form})
 
 #login view
-@login_required
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -48,13 +46,15 @@ def profile_view(request):
 def profile_edit_view(request):
     profile = request.user.profile
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if profile_form.is_valid():
+            profile_form.save()
             return redirect('profile-view')
+        else:
+            print(profile_form.errors)
     else:
-        form = ProfileForm(instance=profile)
-    return render(request, 'accounts/profile_edit.html', {'form':form})
+        profile_form = ProfileForm(instance=profile)
+    return render(request, 'accounts/profile_edit.html', {'profile_form':profile_form})
 
 ## profile delete view
 @login_required

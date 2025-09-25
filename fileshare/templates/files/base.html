@@ -32,7 +32,8 @@
               <div class="flex justify-center items-center space-x-5">
                  <!--Browse Dropdown-->
                 <div class="group relative">
-                  <button id="browse-btn" class="flex items-center justify-center border border-gray-300 cursor-pointer p-1 px-2 rounded-lg text-base hover:bg-gray-600">
+                  <button id="browse-btn" 
+                    class="flex items-center justify-center border border-gray-300 cursor-pointer p-1 px-2 rounded-lg text-base hover:bg-gray-600">
                     Browse
                     <svg class="ml-2 w-4 h-4" 
                       fill="none" 
@@ -57,7 +58,9 @@
                 <!--Profile Dropdown-->
                 <div class="group relative">
                   <button id="profile-btn" class="flex text-sm rounded-full cursor-pointer">
-                    <img src="" alt="Profile" class="w-8 h-8 border rounded-full">
+                    <img src="{{ request.user.profile.profilePicture.url }}" 
+                         alt="Profile" 
+                         class="w-8 h-8 border rounded-full object-cover">
                   </button>
 
                     <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg py-1 hidden">
@@ -65,7 +68,9 @@
                       <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">Settings</a>
           
                       <hr>
-                      <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-red-400 hover:text-red-500 hover:bg-gray-800">Logout</a>
+                      
+                        <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-red-400 hover:text-red-500 hover:bg-gray-800">Logout</a>
+                      
                     </div>
                 </div>
               </div>
