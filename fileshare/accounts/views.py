@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from accounts.forms import CustomUserCreationForm, ProfileForm
+from accounts.forms import CustomUserCreationForm, ProfileForm, UserForm
 from  django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -44,17 +44,26 @@ def profile_view(request):
 # profile edit view
 @login_required
 def profile_edit_view(request):
-    profile = request.user.profile
+    user = request.user
+    profile = user.profile
+    
     if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=user)
         profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if profile_form.is_valid():
+        if profile_form.is_valid() and user_form.is_valid():
+            user_form.save()
             profile_form.save()
             return redirect('profile-view')
         else:
             print(profile_form.errors)
     else:
+        user_form = UserForm(instance=user)
         profile_form = ProfileForm(instance=profile)
-    return render(request, 'accounts/profile_edit.html', {'profile_form':profile_form})
+        
+    return render(request, 'accounts/profile_edit.html', {
+        'profile_form':profile_form,
+        'user_form': user_form
+        })
 
 ## profile delete view
 @login_required
