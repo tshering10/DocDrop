@@ -6,7 +6,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("files.urls")), 
-    path('accounts/', include("accounts.urls")), # custom auth routes
+    path('accounts/', include("accounts.urls")), # custom auth routes for login and signup
+    
+    path('auth/', include('allauth.urls')), # for password reset and social login
    
 ]
 

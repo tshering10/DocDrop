@@ -32,6 +32,13 @@ INSTALLED_APPS = [
     'tailwind',
     'frontend',
     'widget_tweaks',
+    
+   
+    # allauth apps
+    'django.contrib.sites',      # required by allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
  
 ]
 
@@ -45,8 +52,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'fileshare.urls'
@@ -128,3 +137,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
+
+## allauth settings
+SITE_ID = 1
+
+# Optional (email/username settings)
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'

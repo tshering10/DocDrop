@@ -33,7 +33,7 @@
                  <!--Browse Dropdown-->
                 <div class="group relative">
                   <button id="browse-btn" 
-                    class="flex items-center justify-center border border-gray-300 cursor-pointer p-1 px-2 rounded-lg text-base hover:bg-gray-600">
+                    class="flex items-center justify-center border border-gray-600 cursor-pointer p-1 px-2 rounded-lg text-base hover:bg-gray-600">
                     Browse
                     <svg class="ml-2 w-4 h-4" 
                       fill="none" 
@@ -64,12 +64,19 @@
                   </button>
 
                     <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg py-1 hidden">
-                      <a href="{% url "profile-view" %}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">Profile</a>
-                      <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">Settings</a>
-          
-                      <hr>
+                      <a href="{% url "profile-view" %}" 
+                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
+                        Profile
+                      </a>
+                      <a href="{% url "settings" %}" 
+                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
+                          Settings
+                      </a>
+                      <hr class="border-gray-600 my-1">
                       
-                        <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-red-400 hover:text-red-500 hover:bg-gray-800">Logout</a>
+                      <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-red-400 hover:text-red-500 hover:bg-gray-800">
+                        Logout
+                      </a>
                       
                     </div>
                 </div>

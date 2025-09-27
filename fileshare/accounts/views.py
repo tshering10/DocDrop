@@ -75,3 +75,6 @@ def profile_delete_view(request):
         return redirect('login')
     return render(request, 'accounts/profile_confirm_delete.html')
         
+@login_required
+def settings_view(request):
+    return render(request, "accounts/settings.html")
