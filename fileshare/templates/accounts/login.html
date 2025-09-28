@@ -27,7 +27,8 @@
         <!-- Remember me & Forgot Password -->
         <div class="flex items-center justify-between text-gray-300 text-sm">
             <label class="flex items-center space-x-2">
-                <input type="checkbox" class="h-4 w-4 rounded border-gray-600 focus:ring-blue-500">
+                <input type="checkbox" name="remember_me" id="remember_me" 
+                    class="h-4 w-4 rounded border-gray-600 focus:ring-blue-500">
                 <span>Remember me</span>
             </label>
             <a href="{% url "account_reset_password" %}" class="text-blue-400 hover:text-blue-600">Forgot Password ?</a>

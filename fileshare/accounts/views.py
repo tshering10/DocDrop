@@ -23,9 +23,18 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+            
+            remember_me = request.POST.get('remember_me')
+            
+            if remember_me:
+                request.session.set_expiry(1209600)
+            else:
+                request.session.set_expiry(0)
+                
             return redirect('dashboard')
     else:
         form = AuthenticationForm()
+    
     return render(request, 'accounts/login.html', {'form': form})
 
 #logout view
