@@ -148,3 +148,4 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
   
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
