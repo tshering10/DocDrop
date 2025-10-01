@@ -1,4 +1,5 @@
 {% extends "files/base.html" %} {% block title %}Signup{% endblock title %}
+{% load socialaccount %}
 {%block content %}
 <div class="max-w-md mx-auto bg-gray-900 p-6 rounded-lg shadow-md mt-5 ">
   <!-- Heading -->
@@ -59,8 +60,7 @@
   <p class="text-sm text-center mt-2">OR</p>
   <!-- Continue with Google -->
   <div class="mt-5">
-    <button
-      type="button"
+    <a href="{% provider_login_url 'google' %}"
       class="w-full flex items-center justify-center px-4 py-2 border border-gray-600 rounded-md bg-gray-800 hover:bg-gray-700 transition"
     >
       <!-- Google Icon (SVG) -->
@@ -83,7 +83,7 @@
         />
       </svg>
       Continue with Google
-    </button>
+    </a>
   </div>
 </div>
 {% endblock content %}

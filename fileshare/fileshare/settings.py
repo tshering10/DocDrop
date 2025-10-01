@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
  
 ]
 
@@ -149,3 +150,5 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
   
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
