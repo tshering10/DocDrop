@@ -33,12 +33,12 @@
                         dark:bg-gray-700 dark:divide-gray-600 z-20">
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
                     <li>
-                        <a href="{{ file.file.url}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                        <a href="{{ file.file.url}}" class="block px-4 py-2 text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
                             Download
                         </a>
                     </li>
                     <li>
-                        <a href="{% url "file-detail" file.id %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                        <a href="{% url "file-detail" file.id %}" class="block px-4 py-2 text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
                             Details
                         </a>
                     </li>

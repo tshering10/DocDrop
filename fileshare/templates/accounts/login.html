@@ -30,10 +30,19 @@
                 <input type="checkbox" name="remember_me" id="remember_me" 
                     class="h-4 w-4 rounded border-gray-600 focus:ring-blue-500">
                 <span>Remember me</span>
-            </label>
+            </label> 
             <a href="{% url "account_reset_password" %}" class="text-blue-400 hover:text-blue-600">Forgot Password ?</a>
         </div>
 
+        <!-- Non-field errors -->
+        {% if form.non_field_errors %}
+            <div class="text-red-600 px-3 py-2">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
+        
         <!-- Submit button -->
         <button type="submit" class="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-semibold transition">
             Login

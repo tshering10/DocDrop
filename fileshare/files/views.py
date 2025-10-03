@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import File
 from .forms import FileUploadForm
+from django.contrib import messages
 
 @login_required
 def file_upload_view(request):
@@ -11,7 +12,9 @@ def file_upload_view(request):
             file_instance = form.save(commit=False)
             file_instance.uploader = request.user
             file_instance.save()
+            messages.success(request, "File uploaded successfully")
             return redirect('dashboard')
+        
     else:
         form = FileUploadForm()
     return render(request, "files/upload.html", {"form": form})
@@ -36,6 +39,7 @@ def user_dashboard(request):
 def delete_view(request, id):
     file = get_object_or_404(File, id=id, uploader=request.user)
     file.delete()
+    messages.success(request, "File deleted successfully")
     return redirect('dashboard')
 
 

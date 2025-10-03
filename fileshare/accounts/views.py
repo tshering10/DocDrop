@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from accounts.forms import CustomUserCreationForm, ProfileForm, UserForm
+from accounts.forms import CustomUserCreationForm, ProfileForm, UserForm, CustomAuthenticationForm
 from  django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 #signup view
 def signup_view(request):
@@ -11,6 +12,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, "Account created successfully")
             return redirect('dashboard')
     else:
         form = CustomUserCreationForm()
@@ -19,7 +21,7 @@ def signup_view(request):
 #login view
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
@@ -30,10 +32,10 @@ def login_view(request):
                 request.session.set_expiry(1209600)
             else:
                 request.session.set_expiry(0)
-                
+            messages.success(request, "Logged in successfully")    
             return redirect('dashboard')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     
     return render(request, 'accounts/login.html', {'form': form})
 
@@ -41,6 +43,7 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
+    messages.success(request, "Logged out successfully")
     return redirect('login')
 
 #profile view
@@ -62,9 +65,8 @@ def profile_edit_view(request):
         if profile_form.is_valid() and user_form.is_valid():
             user_form.save()
             profile_form.save()
+            messages.success(request, "Profile updated successfully")
             return redirect('profile-view')
-        else:
-            print(profile_form.errors)
     else:
         user_form = UserForm(instance=user)
         profile_form = ProfileForm(instance=profile)
@@ -81,6 +83,7 @@ def profile_delete_view(request):
     
     if request.method == 'POST':
         user.delete()
+        messages.success(request, "Profile deleted successfully")
         return redirect('login')
     return render(request, 'accounts/profile_confirm_delete.html')
         
