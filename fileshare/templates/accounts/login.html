@@ -21,7 +21,36 @@
         <!-- Password -->
         <div>
             <label for="id_password" class="block text-sm mb-1 text-gray-300">Password</label>
-            {{ form.password|add_class:"w-full px-3 py-2 rounded-md bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" }}
+            <div class="relative">
+                {{ form.password|add_class:"w-full px-3 py-2 rounded-md bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"|attr:"id:id_password" }}
+
+                <button id="togglePwd" type="button"
+                    class="absolute top-1/2 right-3 -translate-y-1/2 flex items-center cursor-pointer" aria-label="Show Password">
+                    <svg id="iconShow" xmlns="http://www.w3.org/2000/svg" 
+                        width="20" height="20"
+                        viewBox="0 0 24 24" aria-hidden="true" 
+                        focusable="false" role="img">
+                            <g fill="none" stroke="currentColor" stroke-width="1.6" 
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1.5 12s4-7.5 10.5-7.5S22.5 12 22.5 12s-4 7.5-10.5 7.5S1.5 12 1.5 12z"/>
+                                <circle cx="12" cy="12" r="3.2"/>
+                            </g>
+                    </svg>
+
+                    <!-- hide/eye-off icon (hidden initially) -->
+                    <svg id="iconHide" xmlns="http://www.w3.org/2000/svg" width="20" height="20" 
+                        viewBox="0 0 24 24" aria-hidden="true" focusable="false" 
+                        role="img" style="display:none;">
+                        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 2l20 20"/>
+                            <path d="M17.94 17.94A10.87 10.87 0 0 1 12 19.5C5.5 19.5 1.5 12 1.5 12a21.6 21.6 0 0 1 4.73-6.06"/>
+                            <path d="M9.88 9.88a3.5 3.5 0 0 0 4.95 4.95"/>
+                            <path d="M14.12 14.12A10.87 10.87 0 0 0 21.5 12s-1.9-3.01-5.57-5.18"/>
+                        </g>
+                    </svg>
+                </button>
+            </div>
+            
         </div>
 
         <!-- Remember me & Forgot Password -->
@@ -48,10 +77,34 @@
             Login
         </button>
 
-        <p class="text-center">Do not have an account?
+        <p class="text-center">New to Docdrop?
             <a href="{% url "signup" %}" class="text-blue-500 hover:text-blue-700">Sign Up</a>
         </p>
     </form>
 
 </div>
+
+<script>
+    const passwordInput = document.getElementById('id_password');
+    const toggleBtn = document.getElementById('togglePwd');
+    const iconShow = document.getElementById('iconShow');
+    const iconHide = document.getElementById('iconHide');
+
+    toggleBtn.addEventListener('click', () => {
+        if(passwordInput.type == 'password') {
+            passwordInput.type = 'text';
+            iconShow.style.display = 'none';
+            iconHide.style.display = 'block';
+            toggleBtn.setAttribute('aria-label','Hide Password');
+        } else {
+            passwordInput.type = 'password';
+            iconShow.style.display = 'block';
+            iconHide.style.display = 'none';
+            toggleBtn.setAttribute('aria-label','Show Password');
+        }
+    });
+</script>
+
 {% endblock content %}
+
+
