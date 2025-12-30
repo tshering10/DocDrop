@@ -3,12 +3,16 @@
 DocDrop is a simple Django-based file sharing web app that lets users upload and download files easily.
 
 ## 🚀 Features
-- Upload and share files
-- View all uploaded files
-- Download shared files
+- User registration and login (custom authentication + Google login)
+- Secure file upload and download
+- Role-based access control for files
+- Form validation and error handling
+- Minimal, modern UI design
+- Organized file storage for each user
 
 ## 🛠️ Tech Stack
 - Django
+- Django Allauth (for social login)
 - HTML, Tailwind CSS
 - SQLite (default)
 
